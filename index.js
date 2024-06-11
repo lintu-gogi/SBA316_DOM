@@ -11,20 +11,23 @@ form.addEventListener("submit",addValues);
 
 function addValues(evt){
     evt.preventDefault();
-    if(inputEle.value.trim()==='')
+    if(inputEle.value.trim()===''){
         alert("The text is empty. Please enter the text");
+        inputEle.value="";
+    }
     if(inputEle.value.trim()!==''){
     li= document.createElement("li");
     li.classList.add('liClass');
     li.innerHTML=`<label>${inputEle.value}</label>`;
     listEle.appendChild(li);
     listEle.style.marginTop="10px";
+    listEle.style.fontSize="18px";
     deleteBtn= document.createElement("button");
     //deleteBtn.textContent='Delete';
     deleteBtn.innerHTML="\u00d7";
     deleteBtn.classList.add('delete-btn');
     li.appendChild(deleteBtn);
-    
+    deleteBtn.style.marginTop="10px";
     /*span= document.createElement("span");
     span.innerHTML="\u00d7";
     li.appendChild(span);*/
@@ -49,11 +52,12 @@ saveBtn.addEventListener('click',(e)=>{
     listOFInputs.forEach(element => {
         saveArray.push(element)
         console.log(element);
-        element.parentElement.remove();
+        listEle.removeChild(element);
         
     });
+    
     console.log(saveArray);
-    alert("To Do List Saved");
+    window.alert("To Do List Saved");
     //e.target.parentElement.remove();
 })
 
